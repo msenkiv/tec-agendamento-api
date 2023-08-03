@@ -1,0 +1,24 @@
+<!-- edit-endereco.component.html -->
+<div class="p-4">
+    <div class="p-4">
+        <h3 class="text-gray-700 font-bold mb-4">Editar ou adicionar endereço</h3>
+        <div class="space-y-2">
+            <div *ngFor="let c of client" class="w-full p-4 rounded-lg border border-red-600 flex">
+                <!-- Display address details using text or other HTML elements -->
+                <div [class.text-white]="selectedAddress == c.id" class="text-sm">
+                    <div>
+                        {{ c.endereco }} {{ c.numero }}
+                    </div>
+                    <div>
+                        CEP: {{ c.cep }}
+                    </div>
+                    <div>
+                        {{ c.cidade }}-{{ c.uf }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>

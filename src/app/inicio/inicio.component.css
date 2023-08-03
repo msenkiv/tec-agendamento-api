@@ -1,0 +1,12 @@
+.period {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin: 5px;
+  }
+  
+  .selected {
+    background-color: #FF0000; /* Cor de fundo quando selecionado */
+    color: #FFFFFF; /* Cor do texto quando selecionado */
+  }

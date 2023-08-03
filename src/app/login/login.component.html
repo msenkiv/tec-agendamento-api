@@ -1,0 +1,17 @@
+<!-- login.component.html -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100 mr-2 ml-2">
+    <div class="max-w-md w-full p-6 bg-white shadow-lg rounded-lg">
+        <div class="flex justify-center mb-4">
+            <img class="w-24" src="../../assets/logo2.webp" alt="Logo">
+        </div>
+        <h1 class="text-2xl font-bold text-center mb-2 text-red-600">Seja bem-vindo</h1>
+        <p class="text-center text-red-600 mb-6">Ao agendamento de serviço</p>
+        <label for="emailOrCpf" class="block text-sm font-medium text-gray-700 mb-1">Digite o email ou documento de
+            cadastro</label> 
+        <input [(ngModel)]="endpointFeed" id="emailOrCpf" type="text" class="w-full px-4 py-2 border rounded focus:ring focus:ring-blue-200 mb-4">
+        <div class="error-message" style="color: red; font-size: 12px; margin-bottom: 20px ; text-align: center;" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <button (click)="onLoginButtonClick()"
+            class="w-full bg-red-600 text-white py-2 rounded-full hover:bg-red-700">Entrar</button>
+    </div>
+</div>
+

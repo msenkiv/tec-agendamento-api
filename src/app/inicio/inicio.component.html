@@ -1,0 +1,117 @@
+
+<app-loading *ngIf="loading"></app-loading>
+<!-- login.component.html -->
+<div class="mr-2 ml-2 min-h-screen flex justify-center ">
+    <div class="max-w-md w-full  bg-white shadow-lg rounded-lg ">
+        <div class="text-right mr-2 mt-2 text-red-600 cursor-pointer" (click)="logout()">Logout X </div>
+
+        <!-- HEADER BOAS VINDAS -->
+        <div class="flex justify-between items-center p-4">
+            <div class="flex justify-center ">
+                <img class="w-24" src="../../assets/logo2.webp" alt="Logo">
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-center text-red-600">Seja bem-vindo</h1>
+                <h2 class="text-center mb-2 text-gray-700 mt-2">{{clientName}}</h2>
+            </div>
+            <div class="ml-4">
+            </div>
+        </div>
+        <div class="border-t border-gray-300 "></div>
+
+        <!-- SELETOR DE ENDEREÇO -->
+        <div class="p-4">
+            <h3 class="text-gray-700 font-bold mb-4">Para qual endereço deseja atendimento?</h3>
+            <div class="space-y-2">
+                <label *ngFor="let c of client" class="flex items-center">
+                    <div [class.bg-red-600]="selectedAddress == c.id"
+                        class="w-full p-4 rounded-lg border border-red-600 flex">
+                        <input type="radio" name="address" [value]="c.id" [(ngModel)]="selectedAddress" class="mr-2">
+                        <div [class.text-white]="selectedAddress == c.id" class="text-sm">
+                            <div>{{c.endereco}} {{c.numero}}</div>
+                            <div>CEP: {{c.cep}}</div>
+                            <div>{{c.cidade}}-{{c.uf}}</div>
+                            <div></div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <!-- EDITAR ENDE -->
+        <!-- <div class="text-xs text-right cursor-pointer mr-5" (click)="editEnd()">Editar ou adicionar endereço</div> -->
+
+        <!-- SELECIONAR SERVICO -->
+        <div class="p-4">
+            <h3 class="text-gray-700 font-bold mb-4">Qual serviço deseja?</h3>
+
+            <!-- Select Input for Service -->
+            <select
+                class="block w-full  p-2 rounded-lg border border-blue-500 cursor-pointer focus:outline-none focus:ring focus:border-blue-300"
+                [(ngModel)]="selectedService" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let svc of services2" [value]="svc.id">{{ svc.name }}</option>
+            </select>
+        </div>
+
+        <!-- PROXIMA DATA DISPONIVEL -->
+        <div class="p-4">
+            <h3 class="text-gray-700 font-bold mb-1">Data de atendimento</h3>
+            <h4 class="text-gray-500 text-sm mb-2">Nossa próxima data de atendimento é</h4>
+            <label class="flex items-center justify-center h-10 rounded-lg border-2 border-red-500"
+                [class.bg-red-500]="isSelected(nextDateText)">
+                <input type="radio" name="selectedDate" [(ngModel)]="selectedDate" [value]="nextDateText"
+                    (click)="toggleSelection(nextDateText)" class="mr-2">
+                <span class="text-center text-sm font-bold" [class.text-white]="isSelected(nextDateText)">{{
+                    nextDateText.date }} - {{ nextDateText.time }}</span>
+            </label>
+        </div>
+
+
+        <!-- SELECIONAR DATA -->
+        <h3 class="text-gray-700 font-bold mb-1 text-center">Ou selecione a data de atendimento</h3>
+        <div class="p-4  flex justify-center">
+            <div>
+                <input type="date" [(ngModel)]="selectedDate" [min]="minDate"
+                    class="border border-red-600 rounded-md px-2 py-1 w-40" (ngModelChange)="onDateChange()">
+            </div>
+        </div>
+        <p *ngIf="noDateAvaliabe"   class="text-red-700 text-sm mb-1 text-center">Não existe agendamento disponível para esta data.</p>
+
+        <div class="p-4 flex justify-center">
+            <div *ngIf="morning" (click)="selectPeriod(1)" [ngClass]="{'selected': selectedPeriod === 1}"
+                class="period">
+                Manhã
+            </div>
+            <div *ngIf="afternoon" (click)="selectPeriod(2)" [ngClass]="{'selected': selectedPeriod === 2}"
+                class="period">
+                Tarde
+            </div>
+            <div *ngIf="integral" (click)="selectPeriod(3)" [ngClass]="{'selected': selectedPeriod === 3}"
+                class="period">
+                Integral
+            </div>
+        </div>
+        <div class="p-4 items-center justify-center">
+            <div class="text-center">
+                <button (click)="agendar()" class="bg-red-600  text-white font-bold py-2 px-4 w-10/12 rounded-xl">
+                    Agendar
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- SPACER -->
+    <div class="mt-10 mb-10"></div>
+
+
+    <div class="fixed w-full">
+        <!-- Outros conteúdos da página -->
+        <div *ngIf="error" class="right-0 bg-red-900 text-white p-2 rounded-lg shadow-sm border">
+          Favor preencher todos os campos
+        </div>
+      </div>
+
+</div>
+
+
