@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TecApiService {
  
 
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'http://sistema.tecaquecedores.com.br/api';
 
   constructor(private http: HttpClient) { }
 
