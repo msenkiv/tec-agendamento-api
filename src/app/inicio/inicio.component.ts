@@ -18,6 +18,9 @@ export class InicioComponent implements OnInit {
   loading:boolean = false;
   client!: ClientDTO[];
   clientName: String = '';
+  clientEmail: String = '';
+  clientTel: String = '';
+  clientCel: String = '';
   services: string[] = ['Service 1', 'Service 2', 'Service 3', 'Service 4'];
   services2: ServicosDto[] = [];
   nextDateText: any = {};
@@ -49,6 +52,9 @@ export class InicioComponent implements OnInit {
     }
 
     this.clientName = this.client[0].nome;
+    this.clientEmail = this.client[0].email;
+    this.clientTel = this.client[0].fone;
+    this.clientCel = this.client[0].celular;
     this.selectedAddress = this.client[0].id;
 
     this.loadServices();

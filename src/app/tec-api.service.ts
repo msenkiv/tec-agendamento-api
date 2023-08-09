@@ -19,6 +19,11 @@ export class TecApiService {
     return this.http.get<any>(endpointUrl);
   }
 
+  getUserByCode(code:any){
+    const endpointUrl = `${this.baseUrl}/job/bling/contatos/${code}`;
+    return this.http.get<any>(endpointUrl);
+  }
+
   getServices(): Observable<any> {
     //const endpointUrl = `${this.baseUrl}/api/blingUserData/marvinsenkiv@gmail.com`; // Substitua 'seu-endpoint' pelo caminho correto
     const endpointUrl = `${this.baseUrl}/symplebook/list-services`;
