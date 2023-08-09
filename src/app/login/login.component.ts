@@ -30,7 +30,6 @@ export class LoginComponent {
     const isCodeClient = /^\d{1,6}$/.test(this.endpointFeed);
     if(isCodeClient){
       this.service.getUserByCode(this.endpointFeed).subscribe((data:any)=>{
-        console.log('taca n deixa o cara vir', data)
         if(data.length){
           const filter = data
           this.dataSharingService.setSharedMultiClient(filter)

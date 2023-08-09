@@ -113,6 +113,9 @@
         <div *ngIf="error" class="right-0 bg-red-900 text-white p-2 rounded-lg shadow-sm border">
           Favor preencher todos os campos
         </div>
+        <div *ngIf="missingFields" class="right-0 bg-red-900 text-white p-2 rounded-lg shadow-sm border">
+            {{missingFields}}
+          </div>
       </div>
 
 </div>

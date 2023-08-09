@@ -31,6 +31,7 @@ export class InicioComponent implements OnInit {
   noDateAvaliabe: boolean = false;
   selectedPeriod: number = 0;
   error:boolean = false;
+  missingFields:string = '';
 
   morning: boolean = false;
   afternoon: boolean = false;
@@ -156,7 +157,13 @@ export class InicioComponent implements OnInit {
 
   agendar() {
     const idx = this.findIndexById(this.client, this.selectedAddress);
-    const document = this.client[idx].cnpj;
+    if(!this.client[idx].cnpj && !this.client[idx].email){
+       this.missingFields = 'Este usuário não tem EMAIL nem CNPJ cadastrado. Não é possível agendar';
+    }
+    let document = this.client[idx].cnpj;
+    if(!document){
+      document = this.client[idx].email;
+    }
     let cleanedDocument;
     if(document){
       cleanedDocument = document.replace(/[.-]/g, '');
@@ -221,6 +228,7 @@ export class InicioComponent implements OnInit {
   //@ts-ignore
   checkObjectForEmptyFields(obj) {
     for (const key in obj) {
+      console.log('WTFFF', key, obj)
       if(obj[key] == undefined){
         return true
       }
