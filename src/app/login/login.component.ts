@@ -91,6 +91,9 @@ export class LoginComponent {
     this.service.importacaoJob(startDateString, finalDateString).subscribe((data) => {
       this.syncMessage = data.response;
       this.loading = false
+      setTimeout(()=>{
+        this.syncMessage = ''
+      }, 2000)
     }, (error) => {
       console.log('e', error);
       this.loading = false
