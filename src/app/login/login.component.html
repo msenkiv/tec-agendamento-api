@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <!-- login.component.html -->
 <div class="min-h-screen flex items-center justify-center bg-gray-100 mr-2 ml-2">
     <div class="max-w-md w-full p-6 bg-white shadow-lg rounded-lg">
@@ -12,6 +13,13 @@
         <div class="error-message" style="color: red; font-size: 12px; margin-bottom: 20px ; text-align: center;" *ngIf="errorMessage">{{ errorMessage }}</div>
         <button (click)="onLoginButtonClick()"
             class="w-full bg-red-600 text-white py-2 rounded-full hover:bg-red-700">Entrar</button>
+            <div class="mt-4 flex justify-center items-center self-center">
+                <button (click)="sync()"
+                class="w-32 rounded-full hover:bg-green-500">Sincronizar</button>
+            </div>
+            <div *ngIf="syncMessage" class="text-xs text-center mt-2">{{syncMessage}}</div>
+
     </div>
+
 </div>
 
